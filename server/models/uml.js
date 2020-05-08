@@ -7,11 +7,11 @@ const UmlSchema = mongoose.Schema({
     },
     content: {
         type: String,
-        required: true
+        required: false
     },
     encoded: {
         type: String,
-        required: true
+        required: false
     },
     lastEditedBy: {
         type: String,

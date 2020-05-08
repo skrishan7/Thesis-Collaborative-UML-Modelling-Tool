@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>New UML</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Filename</mat-label>
+    <input matInput required minlength="3" [(ngModel)]="data.filename" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Editor</mat-label>
+    <input matInput required minlength="4" [(ngModel)]="data.editor" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+    Ok
+  </button>
+</div>

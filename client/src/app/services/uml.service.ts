@@ -17,7 +17,7 @@ export class UmlService {
     return this.http.get(this.baseURL + 'uml/' + filename);
   }
 
-  addUml(newUml) {
+  addUml(newUml: Uml) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post(this.baseURL + 'uml', newUml, { headers }) as Observable<Uml>;
@@ -25,6 +25,12 @@ export class UmlService {
 
   deleteUml(filename) {
     return this.http.delete(this.baseURL + 'uml/' + filename);
+  }
+
+  updateUml(newUml: Uml) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put(this.baseURL + 'uml/' + newUml.filename, newUml, { headers }) as Observable<Uml>;
   }
 
   // getImage(text) {

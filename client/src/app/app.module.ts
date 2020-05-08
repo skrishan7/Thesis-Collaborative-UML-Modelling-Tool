@@ -24,12 +24,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactsComponent,
     EditorComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { MatTableModule } from '@angular/material/table';
     MatTooltipModule,
     MatTableModule,
     // MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   exports: [
     MatButtonModule,
@@ -74,7 +78,8 @@ import { MatTableModule } from '@angular/material/table';
     MatTooltipModule,
     MatTableModule,
     // MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
