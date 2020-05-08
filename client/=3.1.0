@@ -1,0 +1,18 @@
+
+> fsevents@1.2.12 install /Users/shalini/Git Repo/RUML/client/node_modules/watchpack/node_modules/fsevents
+> node-gyp rebuild
+
+
+> fsevents@1.2.12 install /Users/shalini/Git Repo/RUML/client/node_modules/webpack-dev-server/node_modules/fsevents
+> node-gyp rebuild
+
+
+> fibers@5.0.0 install /Users/shalini/Git Repo/RUML/client/node_modules/fibers
+> node build.js || nodejs build.js
+
+`darwin-x64-72` exists; testing
+Binary is fine; exiting
++ fibers@5.0.0
+added 2 packages from 3 contributors and audited 16488 packages in 21.586s
+found 3 low severity vulnerabilities
+  run `npm audit fix` to fix them, or `npm audit` for details
