@@ -16,7 +16,7 @@
         readonly
         value="{{ uml.lastEditedBy }}"
       />
-      <button class="btn btn-info my-2 my-sm-0" (click)="openDialog()">
+      <button class="btn btn-info my-2 my-sm-0" routerLink="/">
         Update
       </button>
     </form>
@@ -46,7 +46,6 @@
           class="card-text"
           style="width: 490px; height: 776px;"
           [(ngModel)]="uml.context"
-          (keyup)="getImage()"
         >
         </textarea>
       </mat-card-content>

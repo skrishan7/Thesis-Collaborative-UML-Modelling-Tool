@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const helper = require('../deflate/helper');
 
 const Uml = require('../models/uml');
 
@@ -21,8 +22,8 @@ router.get('/uml/:filename', (req, res) => {
 router.post('/uml', (req, res, next) => {
     let newUML = new Uml({
         filename: req.body.filename,
-        content: req.body.content,
-        encoded: req.body.encoded,
+        // content: req.body.content,
+        // encoded: req.body.encoded,
         lastEditedBy: req.body.lastEditedBy
     });
 
@@ -44,7 +45,7 @@ router.put('/uml/:filename', (req, res, next) => {
         $set: {
             filename: req.body.filename,
             content: req.body.content,
-            encoded: req.body.encoded,
+            encoded: helper(req.body.content),
             lastEditedBy: req.body.lastEditedBy
         }
     },
@@ -52,7 +53,7 @@ router.put('/uml/:filename', (req, res, next) => {
             if (err) {
                 res.json(err);
             } else {
-                res.json(result);
+                res.json(encoded);
             }
         })
 });

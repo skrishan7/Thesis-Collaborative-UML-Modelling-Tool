@@ -9,7 +9,8 @@ function compress(text) {
     encodedText = encode.encode64(deflate.zip_deflate(encodedText, 9));
     // encodedText = encode64(zip_deflate(encodedText, 9));
     console.log(encodedText);
-    return 'http://www.plantuml.com/plantuml/png/' + encodedText;
+    // return 'http://www.plantuml.com/plantuml/png/' + encodedText;
+    return encodedText;
 }
 
 // get request
