@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UmlService } from '../services/uml.service';
 import { Uml } from '../models/uml';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
 import { InitData } from '../models/init-data';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-editor',
@@ -13,35 +12,27 @@ import { InitData } from '../models/init-data';
 })
 export class EditorComponent implements OnInit {
   img: any = '../../images/logo.png';
-  uml = new Uml();
-  data = new InitData();
-  filename: string;
-  editor: string;
+  @Input() uml = new Uml();
   // foods: Food[] = [
   //   {value: 'steak-0', viewValue: 'Steak'},
   //   {value: 'pizza-1', viewValue: 'Pizza'},
   //   {value: 'tacos-2', viewValue: 'Tacos'}
   // ];
 
-  constructor(private umlService: UmlService, private dialog: MatDialog) { }
-
-  ngOnInit(): void {
-    this.openDialog();
-    this.uml.context = '';
+  constructor(private umlService: UmlService,
+    private route: ActivatedRoute,
+    private router: Router) {
+    this.route.params.subscribe(params =>
+      // do search
+      console.log(params['id']));
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
-      data: { filename: this.filename, editor: this.editor },
-    });
+  // onSearch(term: string) {
+  //   this.router.navigate(['search', term])
+  // }
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      this.uml.filename = result.filename;
-      this.uml.lastEditedBy = result.editor;
-      this.addUml(this.uml);
-    });
+  ngOnInit(): void {
+    this.uml.context = '';
   }
 
   getUmlByFilename(filename) {
@@ -61,11 +52,11 @@ export class EditorComponent implements OnInit {
     this.umlService.updateUml(uml).subscribe(u => {
       console.log(u);
       this.getUmlByFilename(u.filename);
-    })
+    });
   }
 
   getImage() {
-    this.addUml(this.uml);
+    this.updateUml(this.uml);
   }
 
   // compress(text: string) {

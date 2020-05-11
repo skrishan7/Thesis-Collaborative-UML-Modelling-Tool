@@ -26,6 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { InitComponent } from './init/init.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DialogComponent } from './dialog/dialog.component';
     ContactsComponent,
     EditorComponent,
     DialogComponent,
+    InitComponent,
   ],
   imports: [
     BrowserModule,
