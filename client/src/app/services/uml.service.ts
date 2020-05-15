@@ -17,6 +17,10 @@ export class UmlService {
     return this.http.get(this.baseURL + 'uml/' + filename);
   }
 
+  getUmlById(id) {
+    return this.http.get(this.baseURL + 'uml/id/' + id);
+  }
+
   addUml(newUml: Uml) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');

@@ -18,12 +18,19 @@ router.get('/uml/:filename', (req, res) => {
     })
 });
 
+// get uml by id 
+router.get('/uml/id/:id', (req, res) => {
+    Uml.findOne({ id: req.params._id }, function (err, result) {
+        res.json(result);
+    })
+});
+
 // add uml
 router.post('/uml', (req, res, next) => {
     let newUML = new Uml({
         filename: req.body.filename,
-        // content: req.body.content,
-        // encoded: req.body.encoded,
+        content: req.body.content,
+        encoded: req.body.encoded,
         lastEditedBy: req.body.lastEditedBy
     });
 

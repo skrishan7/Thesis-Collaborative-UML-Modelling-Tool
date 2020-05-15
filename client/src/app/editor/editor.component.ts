@@ -12,7 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditorComponent implements OnInit {
   img: any = '../../images/logo.png';
-  @Input() uml = new Uml();
+  // @Input() uml = new Uml();
+  uml = new Uml();
   // foods: Food[] = [
   //   {value: 'steak-0', viewValue: 'Steak'},
   //   {value: 'pizza-1', viewValue: 'Pizza'},
@@ -22,9 +23,13 @@ export class EditorComponent implements OnInit {
   constructor(private umlService: UmlService,
     private route: ActivatedRoute,
     private router: Router) {
-    this.route.params.subscribe(params =>
-      // do search
-      console.log(params['id']));
+    this.route.params.subscribe(params => {
+      console.log(params.id);
+      this.umlService
+        .getUmlById(params.id)
+        .subscribe((u: Uml) => (this.uml = u));
+      console.log(this.uml);
+    });
   }
 
   // onSearch(term: string) {
@@ -44,7 +49,6 @@ export class EditorComponent implements OnInit {
   addUml(uml: Uml) {
     this.umlService.addUml(uml).subscribe(u => {
       console.log(u);
-      this.getUmlByFilename(u.filename);
     });
   }
 

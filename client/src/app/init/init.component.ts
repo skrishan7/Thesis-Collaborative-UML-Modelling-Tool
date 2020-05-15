@@ -4,6 +4,7 @@ import { Uml } from '../models/uml';
 import { InitData } from '../models/init-data';
 import { DialogComponent } from '../dialog/dialog.component';
 import { UmlService } from '../services/uml.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-init',
@@ -18,7 +19,7 @@ export class InitComponent implements OnInit {
   filename: string;
   editor: string;
 
-  constructor(private umlService: UmlService, private dialog: MatDialog) { }
+  constructor(private umlService: UmlService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     console.log('init');
@@ -35,20 +36,40 @@ export class InitComponent implements OnInit {
       console.log('The dialog was closed');
       this.uml.filename = result.filename;
       this.uml.lastEditedBy = result.editor;
-      this.addUml(this.uml);
+      this.uml.encoded = null;
+      this.uml.context = null;
+      // this.addUml(this.uml);
+      // this.getUmlByFilename(this.uml.filename);
+      this.redirect(this.uml);
     });
+  }
+
+  redirect(uml: Uml) {
+    this.umlService
+      .addUml(uml)
+      .subscribe(x => {
+        console.log(x);
+        this.umlService
+          .getUmlByFilename(uml.filename)
+          .subscribe((u: Uml) => {
+            this.uml = u;
+            this.router.navigateByUrl('/uml/' + this.uml._id);
+          });
+      });
   }
 
   addUml(uml: Uml) {
     this.umlService.addUml(uml).subscribe(u => {
       console.log(u);
-      this.getUmlByFilename(u.filename);
     });
   }
 
   getUmlByFilename(filename) {
     this.umlService
       .getUmlByFilename(filename)
-      .subscribe((u: Uml) => (this.uml = u));
+      .subscribe((u: Uml) => {
+        this.uml = u;
+        this.router.navigate(['/uml/' + this.uml._id]);
+      });
   }
 }
