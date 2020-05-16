@@ -11,14 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   providers: [UmlService],
 })
 export class EditorComponent implements OnInit {
-  img: any = '../../images/logo.png';
-  // @Input() uml = new Uml();
   uml = new Uml();
-  // foods: Food[] = [
-  //   {value: 'steak-0', viewValue: 'Steak'},
-  //   {value: 'pizza-1', viewValue: 'Pizza'},
-  //   {value: 'tacos-2', viewValue: 'Tacos'}
-  // ];
+  imgSrc: any = "http://www.plantuml.com/plantuml/png/";
 
   constructor(private umlService: UmlService,
     private route: ActivatedRoute,
@@ -29,6 +23,7 @@ export class EditorComponent implements OnInit {
         .getUmlById(params.id)
         .subscribe((u: Uml) => (this.uml = u));
       console.log(this.uml);
+      this.imgSrc =  this.imgSrc + this.uml.encoded;
     });
   }
 
@@ -37,13 +32,6 @@ export class EditorComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    this.uml.context = '';
-  }
-
-  getUmlByFilename(filename) {
-    this.umlService
-      .getUmlByFilename(filename)
-      .subscribe((u: Uml) => (this.uml = u));
   }
 
   addUml(uml: Uml) {
@@ -52,21 +40,18 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  updateUml(uml: Uml) {
-    this.umlService.updateUml(uml).subscribe(u => {
+  async updateImage() {
+    // const u = await this.umlService.updateUml(this.uml).toPromise();
+    // console.log(u);
+    // const x = await this.umlService.getUmlByFilename(u.filename).toPromise();
+    // this.uml = <Uml> x;
+
+    this.umlService.updateUml(this.uml).subscribe(u => {
       console.log(u);
-      this.getUmlByFilename(u.filename);
+      this.umlService
+      .getUmlByFilename(u.filename)
+      .subscribe((x: Uml) => (this.uml = x));
     });
   }
 
-  getImage() {
-    this.updateUml(this.uml);
-  }
-
-  // compress(text: string) {
-  //   console.log('before');
-  //   console.log(JSON.stringify(text));
-  //   this.plantumlService.compress(JSON.stringify(text))
-  //     .subscribe(i => console.log(i));
-  // }
 }

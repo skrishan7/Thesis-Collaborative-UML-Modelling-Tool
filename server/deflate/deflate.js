@@ -7,6 +7,9 @@
  * data = zip_deflate(src);
  */
 
+const express = require('express');
+const router = express.Router();
+
 /* constant parameters */
 var zip_WSIZE = 32768;		// Sliding Window size
 var zip_STORED_BLOCK = 0;
@@ -1698,7 +1701,7 @@ function zip_qoutbuf() {
   }
 }
 
-function zip_deflate(str, level) {
+router.zip_deflate = function(str, level) {
   let out; let buff;
   let i; let j;
 
@@ -1719,3 +1722,5 @@ function zip_deflate(str, level) {
   zip_deflate_data = null; // G.C.
   return out;
 }
+
+module.exports = router;

@@ -37,20 +37,20 @@ export class InitComponent implements OnInit {
       this.uml.filename = result.filename;
       this.uml.lastEditedBy = result.editor;
       this.uml.encoded = null;
-      this.uml.context = null;
+      this.uml.content = null;
       // this.addUml(this.uml);
       // this.getUmlByFilename(this.uml.filename);
       this.redirect(this.uml);
     });
   }
 
-  redirect(uml: Uml) {
+  redirect(newUml: Uml) {
     this.umlService
-      .addUml(uml)
+      .addUml(newUml)
       .subscribe(x => {
         console.log(x);
         this.umlService
-          .getUmlByFilename(uml.filename)
+          .getUmlByFilename(newUml.filename)
           .subscribe((u: Uml) => {
             this.uml = u;
             this.router.navigateByUrl('/uml/' + this.uml._id);

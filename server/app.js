@@ -10,7 +10,7 @@ var app = express();
 const umlService = require('./services/uml-service');
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost:27017/uml');
+mongoose.connect('mongodb://localhost:27017/Thesis');
 
 // on connection
 mongoose.connection.on('connected', () => {
@@ -22,6 +22,9 @@ mongoose.connection.on('error', () => {
         console.log('Error in Database connection: ' + err);
     }
 });
+
+mongoose.set('useFindAndModify', false);
+mongoose.set('debug', true)
 
 // port number
 const port = 3000;

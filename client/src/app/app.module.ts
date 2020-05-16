@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContactsComponent } from './contacts/contacts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EditorComponent } from './editor/editor.component';
@@ -31,7 +30,6 @@ import { InitComponent } from './init/init.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ContactsComponent,
     EditorComponent,
     DialogComponent,
     InitComponent,

@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const helper = require('../deflate/helper');
+// const helper = require('../deflate/helper');
+// import { compress } from '../deflate/helper'
+var helper = require('../deflate/helper');
 
 const Uml = require('../models/uml');
 
@@ -20,8 +22,16 @@ router.get('/uml/:filename', (req, res) => {
 
 // get uml by id 
 router.get('/uml/id/:id', (req, res) => {
-    Uml.findOne({ id: req.params._id }, function (err, result) {
-        res.json(result);
+    // Uml.findById(req.params._id, function (err, result) {
+    //     res.json(result);
+    // })
+    Uml.findById(req.params.id)
+    .exec(function (err, product) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(product);
+        }
     })
 });
 
@@ -48,19 +58,19 @@ router.post('/uml', (req, res, next) => {
 });
 
 router.put('/uml/:filename', (req, res, next) => {
-    Uml.findOneAndUpdate({ _id: req.params.id }, {
+    Uml.update({filename: req.params.filename}, {
+    // Uml.findOneAndUpdate({ filename: req.params.filename }, {
         $set: {
-            filename: req.body.filename,
             content: req.body.content,
-            encoded: helper(req.body.content),
+            encoded: helper.compress(req.body.content),
             lastEditedBy: req.body.lastEditedBy
         }
-    },
+    }, {new: true},
         function (err, result) {
             if (err) {
                 res.json(err);
             } else {
-                res.json(encoded);
+                res.json(result);
             }
         })
 });
