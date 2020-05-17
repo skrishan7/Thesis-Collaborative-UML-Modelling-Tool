@@ -26,8 +26,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { InitComponent } from './init/init.component';
-import { PusherService } from './services/pusher.service';
 import { UmlService } from './services/uml.service';
+import { PusherService } from './services/pusher.service';
 
 @NgModule({
   declarations: [

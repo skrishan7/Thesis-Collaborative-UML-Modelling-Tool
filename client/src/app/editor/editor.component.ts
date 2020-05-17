@@ -41,12 +41,12 @@ export class EditorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // const channel = this.pusher.init();
-    // channel.bind('typing', (data) => {
-    //   if (data.userId !== this.userId) {
-    //     this.uml.encoded = data.encoded;
-    //   }
-    // });
+    const channel = this.pusher.init();
+    channel.bind('typing', (data) => {
+      if (data.userId !== this.userId) {
+        this.uml.encoded = data.encoded;
+      }
+    });
   }
 
   // onSearch(term: string) {
