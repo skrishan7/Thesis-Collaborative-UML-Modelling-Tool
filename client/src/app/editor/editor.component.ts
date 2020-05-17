@@ -41,17 +41,17 @@ export class EditorComponent implements OnInit {
   }
 
   async updateImage() {
-    // const u = await this.umlService.updateUml(this.uml).toPromise();
-    // console.log(u);
-    // const x = await this.umlService.getUmlByFilename(u.filename).toPromise();
-    // this.uml = <Uml> x;
+    const u = await this.umlService.updateUml(this.uml).toPromise();
+    console.log(u);
+    const x = await this.umlService.getUmlByFilename(u.filename).toPromise();
+    this.uml = <Uml> x;
 
-    this.umlService.updateUml(this.uml).subscribe(u => {
-      console.log(u);
-      this.umlService
-      .getUmlByFilename(u.filename)
-      .subscribe((x: Uml) => (this.uml = x));
-    });
+    // this.umlService.updateUml(this.uml).subscribe(u => {
+    //   console.log(u);
+    //   this.umlService
+    //   .getUmlByFilename(u.filename)
+    //   .subscribe((x: Uml) => (this.uml = x));
+    // });
   }
 
 }

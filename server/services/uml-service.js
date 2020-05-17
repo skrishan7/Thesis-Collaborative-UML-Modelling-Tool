@@ -3,6 +3,7 @@ const router = express.Router();
 // const helper = require('../deflate/helper');
 // import { compress } from '../deflate/helper'
 var helper = require('../deflate/helper');
+var ObjectID = require('mongodb').ObjectID;   
 
 const Uml = require('../models/uml');
 
@@ -22,15 +23,15 @@ router.get('/uml/:filename', (req, res) => {
 
 // get uml by id 
 router.get('/uml/id/:id', (req, res) => {
-    // Uml.findById(req.params._id, function (err, result) {
+    // Uml.findById(req.params.id, function (err, result) {
     //     res.json(result);
     // })
-    Uml.findById(req.params.id)
-    .exec(function (err, product) {
+    Uml.findById(new ObjectID(req.params.id))
+    .exec(function (err, uml) {
         if (err) {
             res.json(err);
         } else {
-            res.json(product);
+            res.json(uml);
         }
     })
 });
