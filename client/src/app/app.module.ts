@@ -26,6 +26,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { InitComponent } from './init/init.component';
+import { PusherService } from './services/pusher.service';
+import { UmlService } from './services/uml.service';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,7 @@ import { InitComponent } from './init/init.component';
     MatCardModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [PusherService, UmlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

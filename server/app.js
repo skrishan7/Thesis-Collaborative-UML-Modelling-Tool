@@ -1,4 +1,6 @@
 // importing modules
+require('dotenv').config();
+const Pusher = require('pusher');
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
@@ -6,6 +8,16 @@ var cors = require('cors');
 var path = require('path');
 
 var app = express();
+
+// port number
+const port = 3000;
+
+const pusher = new Pusher({
+    appId: process.env.PUSHER_APP_ID,
+    key: process.env.PUSHER_KEY,
+    secret: process.env.PUSHER_SECRET,
+    cluster: process.env.PUSHER_CLUSTER,
+  });
 
 const umlService = require('./services/uml-service');
 
@@ -26,9 +38,6 @@ mongoose.connection.on('error', () => {
 mongoose.set('useFindAndModify', false);
 mongoose.set('debug', true)
 
-// port number
-const port = 3000;
-
 // adding middleware - cors
 app.use(cors());
 
@@ -47,9 +56,10 @@ app.get('/', (req, res) => {
     res.send('foobar');
 });
 
-app.put('/api/:filename', (req, res, next) => {
-    res.send(req.params.filename);
-})
+app.post('/typing', (req, res) => {
+    pusher.trigger('updating', 'typing', req.body);
+    res.json(req.body);
+});
 
 app.listen(port, () => {
     console.log('Server started at port:' + port);
