@@ -3,7 +3,7 @@ const router = express.Router();
 // const helper = require('../deflate/helper');
 // import { compress } from '../deflate/helper'
 var helper = require('../deflate/helper');
-var ObjectID = require('mongodb').ObjectID;   
+var ObjectID = require('mongodb').ObjectID;
 
 const Uml = require('../models/uml');
 
@@ -27,13 +27,13 @@ router.get('/uml/id/:id', (req, res) => {
     //     res.json(result);
     // })
     Uml.findById(new ObjectID(req.params.id))
-    .exec(function (err, uml) {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(uml);
-        }
-    })
+        .exec(function (err, uml) {
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(uml);
+            }
+        })
 });
 
 // add uml
@@ -42,6 +42,7 @@ router.post('/uml', (req, res, next) => {
         filename: req.body.filename,
         content: req.body.content,
         encoded: req.body.encoded,
+        url: req.body.url,
         lastEditedBy: req.body.lastEditedBy
     });
 
@@ -59,14 +60,15 @@ router.post('/uml', (req, res, next) => {
 });
 
 router.put('/uml/:filename', (req, res, next) => {
-    Uml.update({filename: req.params.filename}, {
-    // Uml.findOneAndUpdate({ filename: req.params.filename }, {
+    Uml.update({ filename: req.params.filename }, {
+        // Uml.findOneAndUpdate({ filename: req.params.filename }, {
         $set: {
             content: req.body.content,
             encoded: helper.compress(req.body.content),
+            url: 'http://www.plantuml.com/plantuml/png/' + helper.compress(req.body.content),
             lastEditedBy: req.body.lastEditedBy
         }
-    }, {new: true},
+    }, { new: true },
         function (err, result) {
             if (err) {
                 res.json(err);

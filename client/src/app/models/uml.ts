@@ -3,5 +3,6 @@ export class Uml {
     filename: string;
     content: string;
     encoded: string;
+    url: string;
     lastEditedBy: string;
 }

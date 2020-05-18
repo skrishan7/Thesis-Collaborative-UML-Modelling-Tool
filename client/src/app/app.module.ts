@@ -83,7 +83,7 @@ import { PusherService } from './services/pusher.service';
     MatCardModule,
     MatDialogModule
   ],
-  providers: [PusherService, UmlService],
+  // providers: [PusherService, UmlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

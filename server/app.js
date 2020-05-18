@@ -1,5 +1,4 @@
 // importing modules
-require('dotenv').config();
 const Pusher = require('pusher');
 var express = require('express');
 var mongoose = require('mongoose');
@@ -13,11 +12,12 @@ var app = express();
 const port = 3000;
 
 const pusher = new Pusher({
-    appId: process.env.PUSHER_APP_ID,
-    key: process.env.PUSHER_KEY,
-    secret: process.env.PUSHER_SECRET,
-    cluster: process.env.PUSHER_CLUSTER,
-  });
+    appId: '1002402',
+    key: '1043d15335fe067e14c8',
+    secret: 'f4480625b18956711fdd',
+    cluster: 'ap1',
+    encrypted: true
+});
 
 const umlService = require('./services/uml-service');
 
@@ -42,7 +42,7 @@ mongoose.set('debug', true)
 app.use(cors());
 
 // body-parser
-app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
 // static files
@@ -52,12 +52,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', umlService);
 
 // testing server
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
     res.send('foobar');
 });
 
-app.post('/typing', (req, res) => {
-    pusher.trigger('updating', 'typing', req.body);
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    next();
+});
+
+app.post('/pusherevent', (req, res) => {
+    pusher.trigger('UML', 'typing', req.body);
     res.json(req.body);
 });
 

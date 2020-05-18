@@ -38,6 +38,7 @@ export class InitComponent implements OnInit {
       this.uml.lastEditedBy = result.editor;
       this.uml.encoded = null;
       this.uml.content = null;
+      this.uml.url = null;
       // this.addUml(this.uml);
       // this.getUmlByFilename(this.uml.filename);
       this.redirect(this.uml);

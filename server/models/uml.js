@@ -13,6 +13,10 @@ const UmlSchema = mongoose.Schema({
         type: String,
         required: false
     },
+    url: {
+        type: String,
+        required: false
+    },
     lastEditedBy: {
         type: String,
         required: true
