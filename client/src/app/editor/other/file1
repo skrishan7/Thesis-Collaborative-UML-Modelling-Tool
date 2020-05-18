@@ -1,0 +1,242 @@
+<!-- <div id="main">
+  <div id="sidebar" class="ui-resizable" style="height: 694px; width: 500px;">
+    <div id="file-menu-dropdown">
+      <span title="Manage files"
+        ><button
+          id="file-menu-button"
+          style="width: 100px;"
+          type="submit"
+          onclick="openFileMenu(); return false;"
+        >
+          File Manager
+        </button></span
+      >
+      <div
+        style="z-index: 4000;"
+        id="file-menu-list"
+        class="file-menu-dropdown-content"
+      >
+        <a href="#" onclick="openFileMenuNew(); return false;">New</a>
+        <a href="#" onclick="openFileMenuOpen(); return false;">Open</a>
+        <a href="#" onclick="submitFileMenuSave(); return false;">Save</a>
+        <a href="#" onclick="openFileMenuSaveas(); return false;">Save As...</a>
+        <a href="#" onclick="openFiles(); return false;">Import / Export</a>
+        <a href="#" onclick="submitFileMenuDelete(); return false;">Delete</a>
+      </div>
+      <span title="Refresh (Alt + Enter)"
+        ><button
+          id="refreshbutton"
+          style="width: 100px;"
+          type="submit"
+          onclick="refreshFromButton(); return false;"
+        >
+          Refresh
+        </button></span
+      >
+      <span id="file-name-output-pre">File:</span
+      ><span id="file-name-output">Default Diagram</span>
+    </div>
+    <div
+      id="editor"
+      class="ace_editor ace-tm ace_nobold"
+      style="width: 490px; height: 649px;"
+    >
+      <textarea
+        class="ace_text-input"
+        wrap="off"
+        spellcheck="false"
+        style="
+          opacity: 0;
+          height: 16px;
+          width: 7.20125px;
+          right: 382.39px;
+          bottom: 331px;
+        "
+      ></textarea>
+      <div class="ace_gutter">
+        <div
+          class="ace_layer ace_gutter-layer ace_folding-enabled"
+          style="margin-top: 0px; height: 683px; width: 48px;"
+        >
+          <div class="ace_gutter-cell" style="height: 16px;">1</div>
+          <div class="ace_gutter-cell" style="height: 16px;">2</div>
+          <div class="ace_gutter-cell" style="height: 16px;">3</div>
+          <div class="ace_gutter-cell" style="height: 16px;">4</div>
+          <div class="ace_gutter-cell" style="height: 16px;">5</div>
+          <div class="ace_gutter-cell" style="height: 16px;">6</div>
+          <div class="ace_gutter-cell" style="height: 16px;">7</div>
+          <div class="ace_gutter-cell" style="height: 16px;">8</div>
+          <div class="ace_gutter-cell" style="height: 16px;">9</div>
+          <div class="ace_gutter-cell" style="height: 16px;">10</div>
+          <div class="ace_gutter-cell" style="height: 16px;">11</div>
+          <div class="ace_gutter-cell" style="height: 16px;">12</div>
+          <div class="ace_gutter-cell" style="height: 16px;">13</div>
+          <div class="ace_gutter-cell" style="height: 16px;">14</div>
+          <div class="ace_gutter-cell" style="height: 16px;">15</div>
+          <div class="ace_gutter-cell" style="height: 16px;">16</div>
+          <div class="ace_gutter-cell" style="height: 16px;">17</div>
+          <div class="ace_gutter-cell" style="height: 16px;">18</div>
+          <div class="ace_gutter-cell" style="height: 16px;">19</div>
+          <div class="ace_gutter-cell" style="height: 16px;">20</div>
+        </div>
+        <div
+          class="ace_gutter-active-line"
+          style="top: 304px; height: 16px;"
+        ></div>
+      </div>
+      <div class="ace_scroller" style="left: 48px; right: 0px; bottom: 0px;">
+        <div
+          class="ace_content"
+          style="
+            margin-top: 0px;
+            width: 444px;
+            height: 683px;
+            margin-left: 0px;
+          "
+        >
+          <div class="ace_layer ace_print-margin-layer">
+            <div
+              class="ace_print-margin"
+              style="left: 580.1px; visibility: visible;"
+            ></div>
+          </div>
+          <div class="ace_layer ace_marker-layer">
+            <div
+              class="ace_active-line"
+              style="height: 16px; top: 304px; left: 0; right: 0;"
+            ></div>
+          </div>
+          <div class="ace_layer ace_text-layer" style="padding: 0px 4px;">
+            <div class="ace_line" style="height: 16px;">@startuml</div>
+            <div class="ace_line" style="height: 16px;"></div>
+            <div class="ace_line" style="height: 16px;">
+              title&nbsp;Activity&nbsp;Diagram&nbsp;\n
+            </div>
+            <div class="ace_line" style="height: 16px;"></div>
+            <div class="ace_line" style="height: 16px;">start</div>
+            <div class="ace_line" style="height: 16px;"></div>
+            <div class="ace_line" style="height: 16px;">
+              :Eat&nbsp;Hot&nbsp;Wings;
+            </div>
+            <div class="ace_line" style="height: 16px;"></div>
+            <div class="ace_line" style="height: 16px;">note&nbsp;left</div>
+            <div class="ace_line" style="height: 16px;">
+              &nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;is&nbsp;a&nbsp;Note...
+            </div>
+            <div class="ace_line" style="height: 16px;">
+              &nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Activity&nbsp;diagrams&nbsp;can&nbsp;begin&nbsp;with&nbsp;a&nbsp;Start
+            </div>
+            <div class="ace_line" style="height: 16px;">
+              &nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;An&nbsp;activity&nbsp;is&nbsp;colon,&nbsp;some&nbsp;words,&nbsp;and&nbsp;a&nbsp;semicolon
+            </div>
+            <div class="ace_line" style="height: 16px;">
+              &nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Activity&nbsp;diagrams&nbsp;can&nbsp;end&nbsp;with&nbsp;a&nbsp;stop
+            </div>
+            <div class="ace_line" style="height: 16px;">end&nbsp;note</div>
+            <div class="ace_line" style="height: 16px;"></div>
+            <div class="ace_line" style="height: 16px;">
+              :Drink&nbsp;Homebrew;
+            </div>
+            <div class="ace_line" style="height: 16px;"></div>
+            <div class="ace_line" style="height: 16px;">stop</div>
+            <div class="ace_line" style="height: 16px;"></div>
+            <div class="ace_line" style="height: 16px;">@enduml</div>
+          </div>
+          <div class="ace_layer ace_marker-layer"></div>
+          <div class="ace_layer ace_cursor-layer ace_hidden-cursors">
+            <div
+              class="ace_cursor"
+              style="
+                left: 54.40875px;
+                top: 304px;
+                width: 7.20125px;
+                height: 16px;
+              "
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="
+          height: auto;
+          width: auto;
+          top: -100px;
+          left: -100px;
+          visibility: hidden;
+          position: fixed;
+          overflow: visible;
+          white-space: nowrap;
+        "
+      >
+        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+      </div>
+      <div
+        class="ace_scrollbar"
+        style="width: 20px; display: none; overflow-y: scroll; bottom: 0px;"
+      >
+        <div
+          class="ace_scrollbar-inner"
+          style="width: 20px; height: 320px;"
+        ></div>
+      </div>
+      <div
+        class="ace_scrollbar-h"
+        style="
+          height: 20px;
+          display: none;
+          overflow-x: scroll;
+          left: 48px;
+          right: 0px;
+        "
+      >
+        <div
+          class="ace_scrollbar-inner"
+          style="height: 20px; width: 444px;"
+        ></div>
+      </div>
+    </div>
+    <div
+      class="ui-resizable-handle ui-resizable-e"
+      style="z-index: 1000;"
+    ></div>
+    <div
+      class="ui-resizable-handle ui-resizable-s"
+      style="z-index: 1000;"
+    ></div>
+    <div
+      class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"
+      style="z-index: 1000;"
+    ></div>
+  </div>
+  <div id="content">
+    <img
+      id="im"
+      src="https://www.plantuml.com/plantuml/img/VP2n3i8m34HtVuLdLFK3w5Aa8Z6nWCJ2ahQcjMWSb1Wg_XutWDY8iiHvTvTBdTH5lVi9G5admasd_61zOiDkYCxZMG0o1B3UEiLTK3on3Aa2aA244rqKqDPnv8Is7UvjNfPbdgv-bltRCc7d15iQM71c7Krmo04VND1z5URMXIb8WIbumZd4FXNef3TD8i_vycyC6Vi9IHfki9oNPrkR9h9ShO-dDj9SBJKDWDeG-v0N"
+      alt="PlantUML Diagram"
+    /><br /><br />
+    <a
+      id="plantimagelink"
+      target="_blank"
+      href="https://www.plantuml.com/plantuml/img/VP2n3i8m34HtVuLdLFK3w5Aa8Z6nWCJ2ahQcjMWSb1Wg_XutWDY8iiHvTvTBdTH5lVi9G5admasd_61zOiDkYCxZMG0o1B3UEiLTK3on3Aa2aA244rqKqDPnv8Is7UvjNfPbdgv-bltRCc7d15iQM71c7Krmo04VND1z5URMXIb8WIbumZd4FXNef3TD8i_vycyC6Vi9IHfki9oNPrkR9h9ShO-dDj9SBJKDWDeG-v0N"
+      >PNG</a
+    >&nbsp;|&nbsp;
+    <a
+      id="plantsvglink"
+      target="_blank"
+      href="https://www.plantuml.com/plantuml/svg/VP2n3i8m34HtVuLdLFK3w5Aa8Z6nWCJ2ahQcjMWSb1Wg_XutWDY8iiHvTvTBdTH5lVi9G5admasd_61zOiDkYCxZMG0o1B3UEiLTK3on3Aa2aA244rqKqDPnv8Is7UvjNfPbdgv-bltRCc7d15iQM71c7Krmo04VND1z5URMXIb8WIbumZd4FXNef3TD8i_vycyC6Vi9IHfki9oNPrkR9h9ShO-dDj9SBJKDWDeG-v0N"
+      >SVG</a
+    >&nbsp;|&nbsp;
+    <a
+      id="planttxtlink"
+      target="_blank"
+      href="https://www.plantuml.com/plantuml/txt/VP2n3i8m34HtVuLdLFK3w5Aa8Z6nWCJ2ahQcjMWSb1Wg_XutWDY8iiHvTvTBdTH5lVi9G5admasd_61zOiDkYCxZMG0o1B3UEiLTK3on3Aa2aA244rqKqDPnv8Is7UvjNfPbdgv-bltRCc7d15iQM71c7Krmo04VND1z5URMXIb8WIbumZd4FXNef3TD8i_vycyC6Vi9IHfki9oNPrkR9h9ShO-dDj9SBJKDWDeG-v0N"
+      >TXT</a
+    >&nbsp;|&nbsp;
+    <a
+      id="planteditorlink"
+      target="_blank"
+      href="?text=VP2n3i8m34HtVuLdLFK3w5Aa8Z6nWCJ2ahQcjMWSb1Wg_XutWDY8iiHvTvTBdTH5lVi9G5admasd_61zOiDkYCxZMG0o1B3UEiLTK3on3Aa2aA244rqKqDPnv8Is7UvjNfPbdgv-bltRCc7d15iQM71c7Krmo04VND1z5URMXIb8WIbumZd4FXNef3TD8i_vycyC6Vi9IHfki9oNPrkR9h9ShO-dDj9SBJKDWDeG-v0N"
+      >Edit</a
+    >
+  </div>
+</div> -->

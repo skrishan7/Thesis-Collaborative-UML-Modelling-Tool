@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable require-jsdoc */
+const express = require('express');
+const router = express.Router();
 
 let url;
 
 // Functions found from https://plantuml.com/code-javascript-synchronous
-function encode64(data) {
+router.encode64 = function(data) {
   r = '';
   for (let i = 0; i < data.length; i += 3) {
     if (i + 2 == data.length) {
@@ -54,4 +56,4 @@ function encode6bit(b) {
   return '?';
 }
 
-
+module.exports = router;

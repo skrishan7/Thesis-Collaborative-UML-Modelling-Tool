@@ -1,68 +1,81 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { UmlService } from '../services/uml.service';
 import { Uml } from '../models/uml';
-import { InitData } from '../models/init-data';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { PusherService } from '../services/pusher.service';
+import { v4 } from 'uuid';
 
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss'],
-  providers: [UmlService],
+  providers: [UmlService, PusherService],
 })
-export class EditorComponent implements OnInit {
-  img: any = '../../images/logo.png';
-  @Input() uml = new Uml();
-  // foods: Food[] = [
-  //   {value: 'steak-0', viewValue: 'Steak'},
-  //   {value: 'pizza-1', viewValue: 'Pizza'},
-  //   {value: 'tacos-2', viewValue: 'Tacos'}
-  // ];
+export class EditorComponent implements OnInit, AfterViewInit {
+  uml = new Uml();
+  userId = v4();
+  imgSrcBase: any = "http://www.plantuml.com/plantuml/png/";
+  timer: any;
+  timeout = 2000;
 
   constructor(private umlService: UmlService,
-    private route: ActivatedRoute,
-    private router: Router) {
-    this.route.params.subscribe(params =>
-      // do search
-      console.log(params['id']));
+    private pusherService: PusherService,
+    private route: ActivatedRoute) {
+
+    this.route.params.subscribe(params => {
+      this.umlService
+        .getUmlById(params.id)
+        .subscribe((u: Uml) => (this.uml = u));
+    });
   }
 
-  // onSearch(term: string) {
-  //   this.router.navigate(['search', term])
-  // }
+  ngAfterViewInit() {
+    const channel = this.pusherService.init();
+    channel.bind('typing', data => {
+        this.umlService.getUmlByFilename(this.uml.filename)
+        .subscribe((updatedUml: Uml) => {
+          this.uml = updatedUml;
+        });
+    });
+  }
 
   ngOnInit(): void {
-    this.uml.context = '';
   }
 
-  getUmlByFilename(filename) {
-    this.umlService
-      .getUmlByFilename(filename)
-      .subscribe((u: Uml) => (this.uml = u));
-  }
-
-  addUml(uml: Uml) {
-    this.umlService.addUml(uml).subscribe(u => {
-      console.log(u);
-      this.getUmlByFilename(u.filename);
+  async updateImage() {
+    this.umlService.updateUml(this.uml).subscribe(u => {
+      this.umlService
+        .getUmlByFilename(u.filename)
+        .subscribe((x: Uml) => (this.uml = x));
     });
   }
 
-  updateUml(uml: Uml) {
-    this.umlService.updateUml(uml).subscribe(u => {
-      console.log(u);
-      this.getUmlByFilename(u.filename);
+  update() {
+    this.resetCounter();
+    this.timer = setTimeout(() => { this.updateServers(); }, this.timeout);
+  }
+
+  updateServers() {
+    console.log("servers being updated");
+    // send pusher an update
+    this.pusherService.makeRequest(this.uml.encoded, this.userId)
+      .subscribe(x => {
+      });
+
+    // update uml in db
+    this.umlService.updateUml(this.uml).subscribe((u: Uml) => {
+      console.log("updating UML");
+
+      // retrieve back the updated uml from db
+      this.umlService.getUmlByFilename(this.uml.filename)
+        .subscribe((updatedUml: Uml) => {
+          this.uml = updatedUml;
+        });
     });
   }
 
-  getImage() {
-    this.updateUml(this.uml);
+  resetCounter() {
+    clearTimeout(this.timer);
   }
 
-  // compress(text: string) {
-  //   console.log('before');
-  //   console.log(JSON.stringify(text));
-  //   this.plantumlService.compress(JSON.stringify(text))
-  //     .subscribe(i => console.log(i));
-  // }
 }

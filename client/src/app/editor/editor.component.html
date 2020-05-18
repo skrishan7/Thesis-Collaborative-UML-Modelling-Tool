@@ -4,29 +4,20 @@
   </ul>
   <ul>
     <form class="form-inline my-2 my-lg-0">
-      <input
-        class="form-control mr-sm-2"
-        type="text"
-        readonly
-        value="{{ uml.filename }}"
-      />
-      <input
-        class="form-control mr-sm-2"
-        type="text"
-        readonly
-        value="{{ uml.lastEditedBy }}"
-      />
+      <input class="form-control mr-sm-2" type="text" readonly value="{{ uml.filename }}" />
+      <input class="form-control mr-sm-2" type="text" readonly value="{{ uml.lastEditedBy }}" />
       <button class="btn btn-info my-2 my-sm-0" routerLink="/">
         Update
       </button>
     </form>
   </ul>
 </mat-toolbar>
-<mat-grid-list cols="2" rowHeight="2:1">
-  <mat-grid-tile rowspan="3">
-    <mat-card class="text-card">
-      <mat-card-header colour="accent">
-        <!-- <mat-form-field>
+<div>
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile rowspan="3">
+      <mat-card class="text-card">
+        <mat-card-header colour="accent">
+          <!-- <mat-form-field>
       <mat-label>File Manager</mat-label>
       <select ng-model="fileManagerSelect" class="nav-item dropdown">
         <option class="dropdown-item" value="New">New</option>
@@ -38,35 +29,27 @@
         <option value="Delete">Delete</option>
       </select>
     </mat-form-field> -->
-      </mat-card-header>
-      <mat-card-content>
-        <textarea
-          #textbox
-          id="umltext"
-          class="card-text"
-          style="width: 490px; height: 776px;"
-          [(ngModel)]="uml.context"
-        >
+        </mat-card-header>
+        <mat-card-content>
+          <textarea #textbox id="umltext" class="card-text" style="width: 490px; height: 776px;"
+            [(ngModel)]="uml.content" (keyup)="update()" (keydown)="resetCounter()">
         </textarea>
-      </mat-card-content>
-      <mat-card-actions>
-        <!-- actions  -->
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile rowspan="3">
-    <mat-card class="image-card">
-      <mat-card-header>
-        <mat-card-title> </mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <img mat-card-image ng-src="img" />
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>PNG</button>
-        <button mat-button>SVG</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="3">
+      <mat-card class="image-card">
+        <mat-card-header>
+          <mat-card-title> </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <img mat-card-image [src]="uml.url">
+        </mat-card-content>
+        <mat-card-actions>
+          <!-- <button mat-button>PNG</button>
+        <button mat-button>SVG</button> -->
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

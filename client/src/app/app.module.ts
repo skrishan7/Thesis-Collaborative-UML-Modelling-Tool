@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContactsComponent } from './contacts/contacts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EditorComponent } from './editor/editor.component';
@@ -27,11 +26,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { InitComponent } from './init/init.component';
+import { UmlService } from './services/uml.service';
+import { PusherService } from './services/pusher.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactsComponent,
     EditorComponent,
     DialogComponent,
     InitComponent,
@@ -83,7 +83,7 @@ import { InitComponent } from './init/init.component';
     MatCardModule,
     MatDialogModule
   ],
-  providers: [],
+  // providers: [PusherService, UmlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

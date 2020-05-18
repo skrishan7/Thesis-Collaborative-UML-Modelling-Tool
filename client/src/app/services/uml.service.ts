@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Uml } from '../models/uml';
 
@@ -15,6 +15,10 @@ export class UmlService {
 
   getUmlByFilename(filename) {
     return this.http.get(this.baseURL + 'uml/' + filename);
+  }
+
+  getUmlById(id) {
+    return this.http.get(this.baseURL + 'uml/id/' + id);
   }
 
   addUml(newUml: Uml) {

@@ -1,7 +1,8 @@
 export class Uml {
     _id?: string;
     filename: string;
-    context: string;
+    content: string;
     encoded: string;
+    url: string;
     lastEditedBy: string;
 }
