@@ -1,16 +1,22 @@
 <mat-toolbar color="primary" class="header">
-  <ul>
-    <div>RUML</div>
-  </ul>
-  <ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" readonly value="{{ uml.filename }}" />
-      <input class="form-control mr-sm-2" type="text" readonly value="{{ uml.lastEditedBy }}" />
-      <button class="btn btn-info my-2 my-sm-0" routerLink="/">
-        Update
-      </button>
-    </form>
-  </ul>
+  <span style="margin-right: 100px;">Collaborative UML</span>
+  <span style="margin-right: 50px;">
+    <span>
+      Filename: {{ uml.filename }}
+    </span>
+    <span>
+      Editor: {{ uml.lastEditedBy }}
+    </span>
+  </span>
+  <span>
+    <button mat-raised-button routerLink="/">
+      Update
+    </button>
+  </span>
+  <span style="position: absolute;right: 0; margin-right: 10px;">
+    <button mat-raised-button color="accent" onclick="window.open('//real-world-plantuml.com/?type=sequence')">Real
+      World Examples</button>
+  </span>
 </mat-toolbar>
 <div>
   <mat-grid-list cols="2" rowHeight="2:1">
@@ -31,25 +37,15 @@
     </mat-form-field> -->
         </mat-card-header>
         <mat-card-content>
-          <textarea #textbox id="umltext" class="card-text" style="width: 490px; height: 776px;"
-            [(ngModel)]="uml.content" (keyup)="update()" (keydown)="resetCounter()">
+          <textarea #textbox id="umltext" autofocus class="text" [(ngModel)]="uml.content"
+            (keyup)="update()" (keydown)="resetCounter()">
         </textarea>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
+
     <mat-grid-tile rowspan="3">
-      <mat-card class="image-card">
-        <mat-card-header>
-          <mat-card-title> </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <img mat-card-image [src]="uml.url">
-        </mat-card-content>
-        <mat-card-actions>
-          <!-- <button mat-button>PNG</button>
-        <button mat-button>SVG</button> -->
-        </mat-card-actions>
-      </mat-card>
+      <img class="image" [src]="uml.url">
     </mat-grid-tile>
   </mat-grid-list>
 </div>

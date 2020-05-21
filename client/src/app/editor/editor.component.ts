@@ -16,7 +16,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   userId = v4();
   imgSrcBase: any = "http://www.plantuml.com/plantuml/png/";
   timer: any;
-  timeout = 2000;
+  timeout = 1000;
 
   constructor(private umlService: UmlService,
     private pusherService: PusherService,
