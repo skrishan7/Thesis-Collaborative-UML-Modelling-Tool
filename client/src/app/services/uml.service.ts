@@ -5,7 +5,7 @@ import { Uml } from '../models/uml';
 
 @Injectable()
 export class UmlService {
-  baseURL = 'http://localhost:3000/api/';
+  baseURL = 'http://192.168.0.17:3000/api/';
 
   constructor(private http: HttpClient) { }
 

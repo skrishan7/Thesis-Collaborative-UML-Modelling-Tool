@@ -74,11 +74,11 @@ export class EditorComponent implements OnInit, AfterViewInit {
     // update uml in db
     this.umlService.updateUml(this.uml).subscribe((u: Uml) => {
       console.log("updating UML");
-      this.openSnackBar('Saved!', '');
       // retrieve back the updated uml from db
       this.umlService.getUmlByFilename(this.uml.filename)
       .subscribe((updatedUml: Uml) => {
         this.uml = updatedUml;
+        this.openSnackBar('Saved!', '');
       });
     });
   }

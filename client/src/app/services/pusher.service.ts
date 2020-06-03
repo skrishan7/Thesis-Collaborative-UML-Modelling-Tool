@@ -5,7 +5,7 @@ declare const Pusher: any;
 @Injectable()
 export class PusherService {
   channel: any;
-  baseURL = 'http://localhost:3000/';
+  baseURL = 'http://192.168.0.17:3000/';
   // pusher: any;
 
   constructor(private http: HttpClient) {
