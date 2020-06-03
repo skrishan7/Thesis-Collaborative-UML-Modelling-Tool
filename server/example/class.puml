@@ -1,0 +1,19 @@
+@startuml
+
+title Classes - Class Diagram
+
+class Scheduler {
+    +Scheduler(Queue queue, Resources resource)
+    -{abstract}Type getType()
+    -bool setTypes(List<Value> value=[])
+    -int privFunc(Queue q)
+    -Object *iter()
+    -async privAsyncFunc(Queue queue=[])
+    +{abstract} async iterator(Object sort={})
+    -Queue queue
+    -Resources resoures
+}
+
+class blah
+
+@enduml

@@ -1,44 +1,65 @@
 <mat-toolbar color="primary" class="header">
-  <span style="margin-right: 100px;">Collaborative UML</span>
-  <span style="margin-right: 50px;">
-    <span>
-      Filename: {{ uml.filename }}
-    </span>
-    <span>
-      Editor: {{ uml.lastEditedBy }}
-    </span>
+  <span style="margin-right: 100px;">Collaborative UML Modelling Tool</span>
+  <div style="font-size: 60%; margin-top: 10px;">
+      <mat-form-field appearance="outline">
+        <mat-label>Filename</mat-label>
+        <input matInput readonly [value]="uml.filename">
+        <mat-icon matSuffix>text_snippet</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Creator</mat-label>
+        <input matInput readonly [value]="uml.lastEditedBy">
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+  </div>
+  <span style="margin-right: 650px;">
+    <button 
+      mat-raised-button 
+      routerLink="/"
+    >
+      Create New UML
+    </button>
   </span>
   <span>
-    <button mat-raised-button routerLink="/">
-      Update
+    <button 
+      mat-mini-fab
+      matTooltip="PlantUML Documentation"
+      color="accent" 
+      onclick="window.open('//plantuml.com/guide')"
+    >
+      <mat-icon>menu_book</mat-icon>
     </button>
   </span>
   <span style="position: absolute;right: 0; margin-right: 10px;">
-    <button mat-raised-button color="accent" onclick="window.open('//real-world-plantuml.com/?type=sequence')">Real
-      World Examples</button>
+    <button 
+      mat-raised-button 
+      color="accent" 
+      onclick="window.open('//real-world-plantuml.com/?type=sequence')"
+    >
+      Real World Examples
+    </button>
   </span>
 </mat-toolbar>
 <div>
   <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile rowspan="3">
       <mat-card class="text-card">
-        <mat-card-header colour="accent">
-          <!-- <mat-form-field>
-      <mat-label>File Manager</mat-label>
-      <select ng-model="fileManagerSelect" class="nav-item dropdown">
-        <option class="dropdown-item" value="New">New</option>
-        <option class="dropdown-item" value="Open">Open</option>
-        <option value="Save">Save</option>
-        <option value="Save As">Save As..</option>
-        <option value="Import">Import</option>
-        <option value="Export">Export</option>
-        <option value="Delete">Delete</option>
-      </select>
-    </mat-form-field> -->
+        <mat-card-header color="accent">
+          <mat-card-title>
+            <mat-form-field color="accent" style="font-size: medium; color:#f48fb1; margin-right: 20px; width: 50%;">
+              <mat-label> Language </mat-label>
+              <mat-select [(ngModel)]="language">
+                <mat-option *ngFor="let l of languageList" [value]="l">{{l}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="accent" (click)="generateCode()">
+              Generate Code
+            </button>
+          </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <textarea #textbox id="umltext" autofocus class="text" [(ngModel)]="uml.content"
-            (keyup)="update()" (keydown)="resetCounter()">
+          <textarea id="umltext" autofocus class="text" [(ngModel)]="uml.content" (keyup)="update()"
+            (keydown)="resetCounter()">
         </textarea>
         </mat-card-content>
       </mat-card>

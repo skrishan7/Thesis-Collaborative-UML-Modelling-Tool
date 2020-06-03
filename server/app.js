@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var cors = require('cors');
 var path = require('path');
-
 var app = express();
 
 // port number
@@ -69,6 +68,12 @@ app.post('/pusherevent', (req, res) => {
     pusher.trigger('UML', 'typing', req.body);
     res.json(req.body);
 });
+
+// app.get('/condegen/', (req, res) => {
+//     const codegen = p.fromString("@startuml\n\ntitle Classes - Class Diagram\n\nclass Scheduler {\n    +Scheduler(Queue queue, Resources resource)\n    -{abstract}Type getType()\n    -bool setTypes(List<Value> value=[])\n    -int privFunc(Queue q)\n    -Object *iter()\n    -async privAsyncFunc(Queue queue=[])\n    +{abstract} async iterator(Object sort={})\n    -Queue queue\n    -Resources resoures\n}\n\n@enduml");
+//     // const codegen = p.fromFile('./example/class.puml');
+//     codegen.generate('java').then(out => out.print());
+// });
 
 app.listen(port, () => {
     console.log('Server started at port:' + port);

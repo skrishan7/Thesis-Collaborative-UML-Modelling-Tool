@@ -37,6 +37,10 @@ export class UmlService {
     return this.http.put(this.baseURL + 'uml/' + newUml.filename, newUml, { headers }) as Observable<Uml>;
   }
 
+  generateCode(id, lang) {
+    return this.http.get(this.baseURL + 'codegen/' + lang + '/' + id);
+  }
+
   // getImage(text) {
   //   const headers = new HttpHeaders();
   //   headers.append('Content-Type', 'application/json');

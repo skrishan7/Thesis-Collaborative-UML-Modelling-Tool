@@ -4,6 +4,7 @@ const router = express.Router();
 // import { compress } from '../deflate/helper'
 var helper = require('../deflate/helper');
 var ObjectID = require('mongodb').ObjectID;
+var codeGenerator = require('../puml2code');
 
 const Uml = require('../models/uml');
 
@@ -33,7 +34,24 @@ router.get('/uml/id/:id', (req, res) => {
             } else {
                 res.json(uml);
             }
-        })
+        });
+});
+
+router.get('/codegen/:lang/:id', (req, res) => {
+    // const codegen = codeGenerator.fromString("@startuml\n\ntitle Classes - Class Diagram\n\nclass Scheduler {\n    +Scheduler(Queue queue, Resources resource)\n    -{abstract}Type getType()\n    -bool setTypes(List<Value> value=[])\n    -int privFunc(Queue q)\n    -Object *iter()\n    -async privAsyncFunc(Queue queue=[])\n    +{abstract} async iterator(Object sort={})\n    -Queue queue\n    -Resources resoures\n}\n\n@enduml");
+    // const codegen = p.fromFile('./example/class.puml');
+    
+    Uml.findById(new ObjectID(req.params.id))
+        .exec(function (err, uml) {
+            if (err) {
+                res.json(err);
+            } else {
+                const codegen = codeGenerator.fromString(uml.content)
+                codegen.generate(req.params.lang).then(out => {
+                    res.json(out);
+                });
+            }
+        });
 });
 
 // add uml
@@ -89,6 +107,7 @@ router.delete('/uml/:filename', (req, res, next) => {
     })
 });
 
+// router.get('export/')
 // get latest entry
 // router.get('/uml/latest', (req, res, next) => {
 //     Uml.find().limit(1).sort({ $natural: -1 }).toArray(function (err, result) {

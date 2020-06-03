@@ -15,10 +15,10 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-// import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -26,8 +26,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { InitComponent } from './init/init.component';
-import { UmlService } from './services/uml.service';
-import { PusherService } from './services/pusher.service';
 
 @NgModule({
   declarations: [
@@ -47,41 +45,34 @@ import { PusherService } from './services/pusher.service';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    // MatBadgeModule,
     MatListModule,
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    // MatDatepickerModule,
-    // MatNativeDateModule,
-    // MatChipsModule,
     MatTooltipModule,
     MatTableModule,
-    // MatPaginatorModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   exports: [
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    // MatBadgeModule,
     MatListModule,
     MatGridListModule,
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
     MatRadioModule,
-    // MatDatepickerModule,
-    // MatChipsModule,
     MatTooltipModule,
     MatTableModule,
-    // MatPaginatorModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   // providers: [PusherService, UmlService],
   bootstrap: [AppComponent]
